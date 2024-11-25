@@ -13,11 +13,7 @@ class ListContactAdapter(context: Context, data: List<Contact>) :
     ArrayAdapter<Contact>(context, R.layout.contact_item_layout, data) {
     override fun getView(position: Int, convertView: View?, parent:
     ViewGroup): View {
-        /**
-         * É possível utilizar o viewBinding também para os itens da
-         * Listview. O processo é similar ao uso do findViewById(), porém
-         * um pouco mais simples.
-         */
+
         val binding: ContactItemLayoutBinding
         if (convertView == null) {
             binding = ContactItemLayoutBinding.inflate(

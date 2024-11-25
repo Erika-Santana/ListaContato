@@ -55,10 +55,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         super.onRestart()
     }
     override fun onDestroy() {
-        /**
-         * NO onDestoy() vamos apresentar, via logcat, uma lista com
-         * todos os contatos presentes em nosso DAO.
-         */
+
 
         Log.v(TAG, "Executando o onDestroy()")
         Log.v(TAG, "Lista de contatos que será perdida")
@@ -75,11 +72,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     }
     override fun onItemClick(parent: AdapterView<*>?, view: View?,
                              position: Int, id: Long) {
-        /**
-         * Ao clicar sobre um contato da lista, o aplicativo solicita
-         * ao Android que seja realizada uma chamada telefônica para
-         * o número do contato selecionado.
-         */
+
         val selectContact =
             binding.listviewContacts.adapter.getItem(position) as Contact
         val uri = "tel:${selectContact.phone}"
@@ -104,27 +97,11 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         listDatasource.sortBy { it.name }
         adapter.notifyDataSetChanged()
         adapter.notifyDataSetChanged()
-        /**
-         * Ao utilizar um adapter, sempre que a fonte de dados for
-        atualizada, seja
-         * com a troca de todos os elementos como realizado acima, seja com
-        adição
-         * ou remoção de apenas um elemento, deve-se informar o adapter que
-        os
-         * dados mudaram. Essa notificação é realizada com o método
-        notifyDataChance()
-         * do adapter. O adapter, por sua vez, notifica o Listview que é
-        necessário
-         * reorganizar a apresentação da lista.
-         */
+
 
     }
     private fun handleNewContactDialog() {
-        /**
-         * Vamos utilizar uma caixa de diálogo, AlertDialog para
-         * realizar a entrada de dados do novo contato.
-         */
-        // Realizando o binding do layout do Dialog
+
         val bindingDialog = NewContactDialogBinding.inflate(layoutInflater)
         val builderDialog = AlertDialog.Builder(this)
         builderDialog.setView(bindingDialog.root)
@@ -132,8 +109,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
             .setPositiveButton(
                 R.string.btn_dialog_save,
                 DialogInterface.OnClickListener { dialog, which ->
-                    /* Código que é executado quando se clica no botão
-                    salvar do dialog */
+
                     Log.v(TAG, "Salvar contato")
                     ContactDao.insert(
                         Contact(
@@ -147,8 +123,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
             .setNegativeButton(
                 R.string.btn_dialog_cancel,
                 DialogInterface.OnClickListener { dialog, which ->
-                    /* Código que é executado quando se clica no cancelar
-                    salvar do dialog */
+
                     Log.v(TAG, "Cancelar novo contato")
                     dialog.cancel()
                 })
