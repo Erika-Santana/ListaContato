@@ -29,10 +29,6 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         Log.v(TAG, "Executando o onCreate()")
         configClickListener()
         configListview()
-
-        if (savedInstanceState  != null){
-            listDatasource = savedInstanceState.getSerializable("listaContatos") as ArrayList<Contact>
-        }
     }
     override fun onStart() {
         Log.v(TAG, "Executando o onStart()")
@@ -66,10 +62,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         super.onDestroy()
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putSerializable("listaContatos", listDatasource)
-    }
+
     override fun onItemClick(parent: AdapterView<*>?, view: View?,
                              position: Int, id: Long) {
 
@@ -95,7 +88,6 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         listDatasource.clear()
         listDatasource.addAll(ContactDao.findAll())
         listDatasource.sortBy { it.name }
-        adapter.notifyDataSetChanged()
         adapter.notifyDataSetChanged()
 
 
